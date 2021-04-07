@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
-
 import { Typography, Button, Form, message, Input, Icon } from "antd";
-import { InputSizes } from "antd/lib/input/Input";
-
 import Axios from "axios";
 
 const { TextArea } = Input;
