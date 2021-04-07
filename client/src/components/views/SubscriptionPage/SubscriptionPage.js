@@ -7,11 +7,13 @@ import moment from "moment";
 const { Title } = Typography;
 const { Meta } = Card;
 
-function LandingPage() {
+export default function SubscriptionPage() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/video/getVideos").then((response) => {
+    Axios.post("/api/video/getSubscriptionVideos", {
+      userFrom: localStorage.getItem("userId"),
+    }).then((response) => {
       if (response.data.success) {
         console.log(response.data);
         setVideos(response.data.videos);
@@ -59,7 +61,7 @@ function LandingPage() {
 
   return (
     <div style={{ width: "85%", margin: "3rem auto" }}>
-      <Title level={2}> Recommended</Title>
+      <Title level={2}> Subscription</Title>
       <hr />
       <Row gutter={[32, 16]}>
         {/* 화면이 클땐 6*4=24 4개의 카드, 중간사이즈일땐 3개, 이런식... */}
@@ -68,5 +70,3 @@ function LandingPage() {
     </div>
   );
 }
-
-export default LandingPage;
