@@ -24,6 +24,12 @@ export default function VideoDetailPage(props) {
   // image정보 가져오기 전에 렌더링되면서 image가 undefined가 됨
   // videoDetail.writer가 있으면 렌더링되도록 해야함
   if (videoDetail.writer) {
+    const userTo = videoDetail.writer._id;
+    const userFrom = localStorage.getItem("userId");
+    const subscribeButton = userTo !== userFrom && (
+      <Subscribe userTo={userTo} userFrom={userFrom} />
+    );
+
     return (
       <div>
         <Row>
@@ -34,14 +40,7 @@ export default function VideoDetailPage(props) {
                 src={`http://localhost:5000/${videoDetail.filePath}`}
                 controls
               />
-              <List.Item
-                actions={[
-                  <Subscribe
-                    userTo={videoDetail.writer._id}
-                    userFrom={localStorage.getItem("userId")}
-                  />,
-                ]}
-              >
+              <List.Item actions={[subscribeButton]}>
                 <List.Item.Meta
                   avatar={<Avatar src={videoDetail.writer.image} />}
                   title={videoDetail.title}
