@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Comment, Avatar } from "antd";
 import Axios from "axios";
+import LikeDislikes from "./LikeDislikes";
 
 function SingleComment({ videoId, comment, refreshFunction, history }) {
   const user = useSelector((state) => state.user);
@@ -39,6 +40,7 @@ function SingleComment({ videoId, comment, refreshFunction, history }) {
   };
 
   const actions = [
+    <LikeDislikes userId={user.userData._id} commentId={comment._id} />,
     <span onClick={onClickReplyOpen} key="comment-basic-reply-to">
       Reply to
     </span>,
