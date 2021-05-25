@@ -117,6 +117,7 @@ function VideoUploadPage(props) {
         props.history.push("/");
       }, 3000);
     } else {
+      console.log(response.data);
       alert("비디오 업로드에 실패했습니다.");
     }
   };
